@@ -65,3 +65,7 @@ CREATE TABLE IF NOT EXISTS configuracion (
   clave TEXT PRIMARY KEY,
   valor TEXT
 );
+
+
+
+tls
