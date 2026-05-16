@@ -1,0 +1,724 @@
+/* ══════════════════════════════════════════════════
+   DASHBOARD ALUMNO · estilo unificado con el portal
+══════════════════════════════════════════════════ */
+
+/* ── Página ──────────────────────────────────── */
+.page {
+  min-height: 100svh;
+  background: var(--fondo);
+  display: flex;
+  flex-direction: column;
+  color: var(--texto);
+}
+
+/* ─ Tablet: centrado como teléfono ─ */
+@media (min-width: 600px) and (max-width: 767px) {
+  .page         { max-width: 440px; margin: 0 auto; box-shadow: 0 0 80px rgba(0,0,0,0.6); }
+  .appBottomNav { max-width: 440px; left: 50% !important; transform: translateX(-50%) !important; }
+}
+
+/* ─ Desktop: layout con sidebar ───────────────── */
+@media (min-width: 768px) {
+  .page {
+    display: grid;
+    grid-template-areas: "sidebar header" "sidebar main";
+    grid-template-columns: 220px 1fr;
+    grid-template-rows: 56px 1fr;
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  .appHeader { grid-area: header; }
+
+  .appMain {
+    grid-area: main;
+    overflow-y: auto;
+    padding-bottom: 32px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,200,240,0.2) transparent;
+  }
+
+  /* Sidebar */
+  .appBottomNav {
+    grid-area: sidebar;
+    position: static !important;
+    max-width: none !important;
+    left: auto !important;
+    transform: none !important;
+    width: 220px;
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 20px 12px;
+    gap: 2px;
+    border-top: none;
+    border-right: 1px solid var(--borde-sutil);
+    background: rgba(2, 8, 16, 0.9);
+    backdrop-filter: blur(24px);
+  }
+
+  .appNavItem {
+    flex-direction: row;
+    min-width: unset;
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 0;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+  .appNavItem span     { font-size: 0.58rem; letter-spacing: 1px; }
+  .appNavActive        { background: rgba(0,200,240,0.07); color: var(--acento) !important; }
+  .appNavActive svg    { filter: drop-shadow(0 0 5px rgba(0,200,240,0.5)); }
+  .appNavBadge         { top: 6px; right: 8px; }
+
+  /* FAB → botón de texto en sidebar */
+  .appNavCenter {
+    flex-direction: row;
+    width: 100%;
+    border-radius: 0;
+    height: 46px;
+    gap: 12px;
+    justify-content: flex-start;
+    padding: 0 14px;
+    margin: 8px 0;
+    flex-shrink: 0;
+    box-shadow: none;
+  }
+  .appNavCenter:hover  { transform: none; box-shadow: 0 0 16px rgba(0,200,240,0.3); }
+  .appNavCenterLabel   { display: inline; }
+
+  /* Separador antes de "Salir" */
+  .appNavSeparador { display: block; }
+
+  /* Contenido */
+  .appWelcome      { margin: 24px 28px 0; }
+  .appSectionLabel { padding: 20px 28px 8px; }
+  .appContent      { padding: 8px 28px 28px; }
+
+  /* Grid 2 columnas para la vista Inicio */
+  .resumenGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+}
+
+/* ── App Header ──────────────────────────────── */
+.appHeader {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 56px;
+  background: rgba(2, 8, 16, 0.98);
+  border-bottom: 1px solid var(--borde-sutil);
+  backdrop-filter: blur(20px);
+  flex-shrink: 0;
+}
+
+.appHeaderBrand { display: flex; align-items: center; gap: 10px; }
+
+.appBrandDot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--acento);
+  box-shadow: 0 0 10px rgba(0,200,240,0.8);
+}
+
+.appBrandName {
+  font-family: var(--fuente-display);
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--texto);
+}
+
+.appBrandSub {
+  font-size: 0.56rem;
+  color: var(--atenuado);
+  display: none;
+}
+@media (min-width: 360px) { .appBrandSub { display: inline; } }
+
+.appHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.appPerfilBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px; height: 34px;
+  color: var(--atenuado);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.appPerfilBtn:hover { color: var(--acento); }
+
+.appAvatar {
+  width: 34px; height: 34px;
+  background: rgba(0,200,240,0.1);
+  border: 1px solid rgba(0,200,240,0.35);
+  color: var(--acento);
+  font-family: var(--fuente-display);
+  font-size: 0.58rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.appAvatar:hover    { background: rgba(0,200,240,0.16); box-shadow: 0 0 12px rgba(0,200,240,0.3); }
+.appAvatar:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.appAvatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  display: block;
+}
+
+/* ── Main ────────────────────────────────────── */
+.appMain {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 84px;
+}
+
+/* ── Welcome ─────────────────────────────────── */
+.appWelcome {
+  margin: 16px 16px 0;
+  padding: 20px;
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.appWelcome::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--acento), transparent);
+}
+
+/* Foto circular */
+.appWelcomeFotoWrap {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,200,240,0.35);
+  overflow: hidden;
+  background: rgba(0,200,240,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.appWelcomeFoto {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  display: block;
+}
+.appWelcomeIniciales {
+  font-family: var(--fuente-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--acento);
+  line-height: 1;
+}
+
+/* Columna derecha */
+.appWelcomeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+  flex: 1;
+}
+
+.appWelcomeHola {
+  font-size: 0.8rem;
+  color: var(--atenuado);
+  margin-bottom: 2px;
+}
+.appWelcomeNombre {
+  font-family: var(--fuente-display);
+  font-size: clamp(1rem, 4vw, 1.3rem);
+  font-weight: 700;
+  color: var(--texto);
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.appWelcomeChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.appWelcomeEmail {
+  font-size: 0.68rem;
+  color: var(--atenuado);
+  margin-top: 6px;
+  word-break: break-all;
+}
+
+/* Botón editar datos */
+.btnEditarPerfil {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  font-family: var(--fuente-display);
+  font-size: 0.44rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--atenuado);
+  text-decoration: none;
+  border: 1px solid var(--borde-sutil);
+  padding: 6px 12px;
+  background: transparent;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  width: fit-content;
+}
+.btnEditarPerfil:hover {
+  color: var(--acento);
+  border-color: rgba(0,200,240,0.4);
+  background: rgba(0,200,240,0.05);
+}
+.appChip {
+  font-family: var(--fuente-display);
+  font-size: 0.4rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--acento);
+  background: rgba(0,200,240,0.07);
+  border: 1px solid rgba(0,200,240,0.22);
+  padding: 4px 10px;
+}
+.appChipDni {
+  font-family: monospace;
+  font-size: 0.68rem;
+  color: var(--atenuado);
+  padding: 4px 10px;
+  border: 1px solid var(--borde-sutil);
+}
+
+/* ── Section label ───────────────────────────── */
+.appSectionLabel {
+  padding: 18px 20px 6px;
+  font-family: var(--fuente-display);
+  font-size: 0.54rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--atenuado);
+}
+
+/* ── Content ─────────────────────────────────── */
+.appContent {
+  padding: 8px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.appLista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Cabecera mini de sección (vista Inicio) ─── */
+.seccionMiniHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 4px 6px;
+  border-bottom: 1px solid var(--borde-sutil);
+  margin-bottom: 2px;
+}
+.seccionMiniIcono  { display: flex; align-items: center; color: var(--acento); }
+.seccionMiniTitulo {
+  font-family: var(--fuente-display);
+  font-size: 0.54rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--texto-2);
+  flex: 1;
+}
+.seccionMiniBadge {
+  font-family: var(--fuente-display);
+  font-size: 0.46rem;
+  font-weight: 700;
+  padding: 2px 9px;
+  background: rgba(0,200,240,0.1);
+  color: var(--acento);
+  border: 1px solid rgba(0,200,240,0.22);
+}
+
+/* ── Vacío inline (vista Inicio) ─────────────── */
+.vacioInline {
+  font-size: 0.78rem;
+  color: var(--atenuado);
+  padding: 10px 4px 6px;
+  font-style: italic;
+}
+
+/* ── Bot de Repaso card ───────────────────────── */
+.appBotCard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--tarjeta-alt);
+  border: 1px solid var(--borde);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, background 0.2s;
+  margin-top: 4px;
+}
+.appBotCard::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--acento), transparent);
+}
+.appBotCard:hover { border-color: var(--borde-hover); background: rgba(9,21,37,0.9); }
+
+.appBotIcono {
+  width: 42px; height: 42px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(0,200,240,0.3);
+  color: var(--acento);
+  background: rgba(0,200,240,0.06);
+  flex-shrink: 0;
+}
+.appBotInfo    { flex: 1; }
+.appBotTitulo  {
+  font-family: var(--fuente-display);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--texto);
+  margin-bottom: 4px;
+}
+.appBotSub     { font-size: 0.76rem; color: var(--atenuado); }
+.appBotArrow   { color: var(--atenuado); flex-shrink: 0; }
+
+/* ── Bottom Navigation ───────────────────────── */
+.appBottomNav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 68px;
+  background: rgba(2, 8, 16, 0.97);
+  border-top: 1px solid var(--borde-sutil);
+  backdrop-filter: blur(28px);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 4px;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  z-index: 100;
+}
+
+.appNavItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 10px;
+  background: none;
+  border: none;
+  color: var(--atenuado);
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+  min-width: 52px;
+}
+.appNavItem span {
+  font-family: var(--fuente-display);
+  font-size: 0.42rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.appNavItem:hover    { color: var(--texto-2); }
+.appNavItem:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.appNavActive     { color: var(--acento) !important; }
+.appNavActive svg { filter: drop-shadow(0 0 5px rgba(0,200,240,0.5)); }
+
+.appNavCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px; height: 50px;
+  background: var(--acento);
+  color: #000;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(0,200,240,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+}
+.appNavCenter:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(0,200,240,0.55); }
+
+/* Label del botón Bot en sidebar (oculto en móvil) */
+.appNavCenterLabel {
+  display: none;
+  font-family: var(--fuente-display);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Separador sidebar desktop (oculto en móvil) */
+.appNavSeparador { display: none; flex: 1; }
+
+/* Grid resumen (una columna en móvil, dos en desktop) */
+.resumenGrid { display: flex; flex-direction: column; gap: 0; }
+.resumenCol  { display: flex; flex-direction: column; }
+
+.appNavBadge {
+  position: absolute;
+  top: 4px; right: 4px;
+  min-width: 14px; height: 14px;
+  background: var(--acento);
+  color: #000;
+  font-size: 0.36rem;
+  font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 3px;
+}
+
+/* ── Vacío centrado (tabs Exámenes / Encuestas) ── */
+.vacioCentro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 52px 24px;
+  color: var(--atenuado);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ══════════════════════════════════════════════════
+   ACORDEÓN – usado por AcordeonItem
+══════════════════════════════════════════════════ */
+
+.itemAnuncio {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde-sutil);
+  overflow: hidden;
+  transition: border-color 0.2s, background 0.2s;
+}
+.itemAnuncio:last-child { border-bottom: 1px solid var(--borde-sutil); }
+
+.itemAnuncioAbierto {
+  border-color: var(--borde);
+  background: var(--tarjeta-alt);
+}
+
+.anuncioBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.18s;
+}
+.anuncioBtn:hover { background: rgba(0,200,240,0.04); }
+
+.anuncioChevron {
+  color: var(--atenuado);
+  flex-shrink: 0;
+  transition: transform 0.28s ease;
+}
+.anuncioChevronOpen { transform: rotate(180deg); }
+
+.anuncioCuerpo {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.anuncioCuerpoAbierto { max-height: 480px; }
+
+.anuncioCuerpoInner {
+  padding: 12px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--borde-sutil);
+}
+
+/* ── Textos compartidos ──────────────────────── */
+.itemTitulo {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--texto);
+  line-height: 1.4;
+}
+.itemTexto {
+  font-size: 0.88rem;
+  color: var(--texto-2);
+  line-height: 1.62;
+}
+.itemFecha {
+  font-size: 0.74rem;
+  color: var(--atenuado);
+  display: block;
+}
+.itemMeta {
+  display: inline-block;
+  font-family: var(--fuente-display);
+  font-size: 0.44rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--atenuado);
+  border: 1px solid var(--borde-sutil);
+  padding: 3px 10px;
+}
+.itemAccion {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-family: var(--fuente-display);
+  font-size: 0.48rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--acento);
+  text-decoration: none;
+  border: 1px solid rgba(0,200,240,0.3);
+  padding: 8px 16px;
+  transition: background 0.2s, border-color 0.2s;
+}
+.itemAccion:hover {
+  background: rgba(0,200,240,0.07);
+  border-color: rgba(0,200,240,0.5);
+}
+
+.itemCompletado {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-family: var(--fuente-display);
+  font-size: 0.48rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #4ade80;
+  text-decoration: none;
+  border: 1px solid rgba(74,222,128,0.3);
+  padding: 8px 16px;
+  background: rgba(74,222,128,0.06);
+  cursor: default;
+}
+a.itemCompletado { cursor: pointer; }
+a.itemCompletado:hover { background: rgba(74,222,128,0.12); border-color: rgba(74,222,128,0.5); }
+
+/* ══════════════════════════════════════════════════
+   BOT WIDGET · esquina inferior derecha
+══════════════════════════════════════════════════ */
+.botWidget {
+  position: fixed;
+  bottom: 84px;   /* encima del bottom nav en móvil */
+  right: 16px;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* En desktop no hay nav inferior */
+@media (min-width: 768px) {
+  .botWidget { bottom: 28px; right: 28px; }
+}
+
+.botBurbuja {
+  background: var(--acento);
+  color: #000;
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 9px 16px;
+  border-radius: 18px 18px 4px 18px;  /* cola en esquina inferior-derecha */
+  white-space: nowrap;
+  box-shadow: 0 4px 24px rgba(0,200,240,0.45);
+  animation: burbujaViva 3s ease-in-out infinite;
+  /* transición para aparecer/desaparecer */
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.botBurbujaOculta {
+  opacity: 0;
+  transform: translateY(6px) scale(0.94);
+  pointer-events: none;
+  animation: none;
+}
+
+.botCirculo {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: var(--tarjeta);
+  border: 2px solid var(--acento);
+  color: var(--acento);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 22px rgba(0,200,240,0.38);
+  animation: iconoVivo 3.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.botWidget:hover .botBurbuja {
+  box-shadow: 0 6px 32px rgba(0,200,240,0.7);
+}
+.botWidget:hover .botCirculo {
+  box-shadow: 0 0 32px rgba(0,200,240,0.65);
+  border-color: var(--acento-hover);
+  color: var(--acento-hover);
+}
+
+@keyframes burbujaViva {
+  0%, 100% { transform: translateY(0)   scale(1);    }
+  30%       { transform: translateY(-4px) scale(1.02); }
+  65%       { transform: translateY(2px)  scale(0.99); }
+}
+
+@keyframes iconoVivo {
+  0%, 100% { transform: translateY(0);   }
+  40%       { transform: translateY(-5px); }
+  70%       { transform: translateY(2px);  }
+}

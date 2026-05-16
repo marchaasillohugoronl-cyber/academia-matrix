@@ -1,0 +1,15 @@
+/*.scanline {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--acento), transparent);
+  opacity: 0.35;
+  animation: scan 10s linear infinite;
+  z-index: 50;
+  pointer-events: none;
+}
+@keyframes scan {
+  from { top: 0; }
+  to { top: 100vh; }
+}
+*/

@@ -1,0 +1,361 @@
+/* ═══════════════════════════════════════════════
+   BOT DE REPASO
+═══════════════════════════════════════════════ */
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  background: var(--fondo);
+  overflow: hidden;
+}
+
+/* ── Topbar ── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 56px;
+  background: rgba(2, 8, 16, 0.98);
+  border-bottom: 1px solid var(--borde);
+  backdrop-filter: blur(16px);
+  flex-shrink: 0;
+  gap: 12px;
+}
+.topbarLogo { display: flex; flex-direction: column; gap: 1px; }
+.topbarMarca { font-family: var(--fuente-display); font-size: 0.72rem; font-weight: 900; letter-spacing: 4px; color: var(--acento); }
+.topbarSub   { font-size: 0.62rem; color: var(--atenuado); }
+.topbarRight { display: flex; align-items: center; gap: 12px; }
+.progreso {
+  font-family: var(--fuente-display);
+  font-size: 0.46rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--atenuado);
+  border: 1px solid var(--borde-sutil);
+  padding: 5px 12px;
+}
+.btnVolver {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--fuente-display);
+  font-size: 0.46rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--atenuado);
+  background: transparent;
+  border: 1px solid var(--borde-sutil);
+  padding: 7px 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.btnVolver:hover { color: var(--texto); border-color: var(--borde); }
+
+/* ── Barra de progreso ── */
+.progresoBar {
+  height: 3px;
+  background: var(--superficie);
+  flex-shrink: 0;
+}
+.progresoFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--acento), rgba(0,200,240,0.5));
+  transition: width 0.5s ease;
+}
+
+/* ── Chat ── */
+.chat {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scroll-behavior: smooth;
+}
+.chat::-webkit-scrollbar { width: 4px; }
+.chat::-webkit-scrollbar-track { background: transparent; }
+.chat::-webkit-scrollbar-thumb { background: var(--borde-sutil); }
+
+/* ── Burbujas ── */
+.burbuja {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: 82%;
+  animation: entrar 0.3s ease both;
+}
+.burbujaBot {
+  align-self: flex-start;
+}
+.burbujaAlumno {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+.burbujaOk {
+  align-self: flex-start;
+}
+.burbujaMal {
+  align-self: flex-start;
+}
+
+.botIcono {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0,200,240,0.3);
+  color: var(--acento);
+  background: rgba(0,200,240,0.06);
+  margin-top: 2px;
+}
+
+.burbujaTexto {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  padding: 12px 16px;
+}
+
+.burbujaBot .burbujaTexto {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  color: var(--texto);
+}
+.burbujaAlumno .burbujaTexto {
+  background: rgba(0,200,240,0.1);
+  border: 1px solid rgba(0,200,240,0.3);
+  color: var(--texto);
+}
+.burbujaOk .burbujaTexto {
+  background: rgba(74,222,128,0.08);
+  border: 1px solid rgba(74,222,128,0.3);
+  color: #4ade80;
+}
+.burbujaMal .burbujaTexto {
+  background: rgba(248,113,113,0.08);
+  border: 1px solid rgba(248,113,113,0.3);
+  color: #fca5a5;
+}
+
+@keyframes entrar {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Área de opciones / input ── */
+.inputArea {
+  flex-shrink: 0;
+  padding: 12px 16px;
+  border-top: 1px solid var(--borde);
+  background: rgba(6, 14, 26, 0.95);
+}
+
+.opciones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.opcionBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  color: var(--texto-2);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.opcionBtn:hover {
+  border-color: rgba(0,200,240,0.4);
+  background: rgba(0,200,240,0.06);
+  color: var(--texto);
+  transform: translateY(-1px);
+}
+.opcionBtn:active { transform: scale(0.97); }
+
+.opcionLetra {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--borde);
+  font-family: var(--fuente-display);
+  font-size: 0.5rem;
+  font-weight: 700;
+  color: var(--acento);
+  background: rgba(0,200,240,0.05);
+}
+.opcionTexto { font-size: 0.82rem; line-height: 1.4; }
+
+.btnSiguiente {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  background: var(--acento);
+  color: #000;
+  font-family: var(--fuente-display);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btnSiguiente:hover { background: var(--acento-hover); }
+
+.finalBtns {
+  display: flex;
+  gap: 10px;
+}
+.btnReiniciar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px;
+  background: rgba(0,200,240,0.1);
+  color: var(--acento);
+  font-family: var(--fuente-display);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid rgba(0,200,240,0.3);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btnReiniciar:hover { background: rgba(0,200,240,0.18); }
+
+.btnDash {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 13px 20px;
+  background: transparent;
+  color: var(--atenuado);
+  font-family: var(--fuente-display);
+  font-size: 0.52rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: 1px solid var(--borde-sutil);
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+}
+.btnDash:hover { color: var(--texto); border-color: var(--borde); }
+
+/* ── Selección de modo (pantalla inicio) ── */
+.modoSeleccion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.modoBtn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  color: var(--texto);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s, background 0.2s;
+}
+.modoBtn:hover {
+  border-color: rgba(0,200,240,0.4);
+  background: rgba(0,200,240,0.05);
+}
+.modoBtnIcono {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(0,200,240,0.3);
+  color: var(--acento);
+  background: rgba(0,200,240,0.06);
+  flex-shrink: 0;
+}
+.modoBtnInfo  { flex: 1; }
+.modoBtnTitulo {
+  font-family: var(--fuente-display);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--texto);
+  margin-bottom: 3px;
+}
+.modoBtnSub { font-size: 0.78rem; color: var(--atenuado); }
+
+/* ── Lista de exámenes ── */
+.listaExamenes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.examenBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  color: var(--texto-2);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s, background 0.2s;
+  font-size: 0.85rem;
+}
+.examenBtn:hover {
+  border-color: rgba(0,200,240,0.4);
+  background: rgba(0,200,240,0.05);
+  color: var(--texto);
+}
+.examenBtnMeta {
+  font-family: var(--fuente-display);
+  font-size: 0.44rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--atenuado);
+  border: 1px solid var(--borde-sutil);
+  padding: 2px 8px;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+/* ── Vacío ── */
+.vacio {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: var(--atenuado);
+  text-align: center;
+  padding: 40px 24px;
+}
+
+@media (max-width: 480px) {
+  .opciones { grid-template-columns: 1fr; }
+  .finalBtns { flex-direction: column; }
+  .chat { padding: 14px 12px; }
+  .burbuja { max-width: 92%; }
+}

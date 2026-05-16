@@ -1,0 +1,229 @@
+/* ── Sección ─────────────────────────────────── */
+.section {
+  position: relative;
+  z-index: 1;
+  padding: 80px 24px 96px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ── Tarjeta central ─────────────────────────── */
+.inner {
+  position: relative;
+  max-width: 720px;
+  width: 100%;
+  text-align: center;
+  padding: 72px 48px;
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  overflow: hidden;
+
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.inner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--acento), transparent);
+}
+
+.inner.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Resplandor ──────────────────────────────── */
+.glow {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 240px;
+  background: radial-gradient(ellipse, rgba(0, 200, 240, 0.1), transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Textos ──────────────────────────────────── */
+.eyebrow {
+  font-family: var(--fuente-display);
+  font-size: 0.58rem;
+  letter-spacing: 4px;
+  color: var(--acento);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  opacity: 0.85;
+}
+
+.heading {
+  font-family: var(--fuente-display);
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 900;
+  color: var(--texto);
+  margin-bottom: 16px;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+.heading span {
+  color: var(--acento);
+  text-shadow: 0 0 30px rgba(0, 200, 240, 0.35);
+}
+
+.sub {
+  color: var(--atenuado);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 40px;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Botones ─────────────────────────────────── */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.waBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #1a7a3e;
+  color: #fff;
+  font-family: var(--fuente-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+  transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.waBtn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.12), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.waBtn:hover::after { opacity: 1; }
+.waBtn:hover {
+  background: #218a45;
+  box-shadow: 0 6px 32px rgba(26, 122, 62, 0.5);
+  transform: translateY(-2px);
+}
+
+.fbBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #1565c0;
+  color: #fff;
+  font-family: var(--fuente-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+  transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.fbBtn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.12), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.fbBtn:hover::after { opacity: 1; }
+.fbBtn:hover {
+  background: #1976d2;
+  box-shadow: 0 6px 32px rgba(21, 101, 192, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ── Caja de ubicación ───────────────────────── */
+.locationBox {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 22px;
+  border: 1px solid var(--borde);
+  background: rgba(0, 200, 240, 0.04);
+  transition: border-color 0.3s, background 0.3s;
+  text-align: left;
+}
+.locationBox:hover {
+  border-color: rgba(0, 200, 240, 0.3);
+  background: rgba(0, 200, 240, 0.07);
+}
+.locationBox svg { color: var(--acento); flex-shrink: 0; opacity: 0.8; }
+
+.locationLabel {
+  font-family: var(--fuente-display);
+  font-size: 0.5rem;
+  letter-spacing: 2.5px;
+  color: var(--atenuado);
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.locationText {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--texto);
+}
+
+.mapBtn {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-family: var(--fuente-display);
+  font-size: 0.55rem;
+  letter-spacing: 1.5px;
+  color: var(--acento);
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+.mapBtn:hover { opacity: 0.7; }
+
+/* ── Texto de pie ────────────────────────────── */
+.hint {
+  margin-top: 16px;
+  font-size: 0.75rem;
+  color: var(--atenuado);
+  opacity: 0.7;
+}
+
+/* ── Tablet ≥ 768px ──────────────────────────── */
+@media (min-width: 768px) {
+  .inner { max-width: 820px; padding: 80px 60px; }
+}
+
+/* ── Desktop ≥ 1024px ────────────────────────── */
+@media (min-width: 1024px) {
+  .inner { max-width: 960px; padding: 96px 88px; }
+  .heading { font-size: clamp(2.2rem, 4vw, 3.4rem); }
+  .sub { font-size: 1.05rem; max-width: 520px; }
+  .waBtn, .fbBtn { padding: 18px 44px; font-size: 0.7rem; }
+}
+
+/* ── Mobile ──────────────────────────────────── */
+@media (max-width: 600px) {
+  .inner { padding: 48px 24px; }
+  .locationBox { flex-wrap: wrap; }
+  .mapBtn { margin-left: 0; }
+}

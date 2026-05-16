@@ -1,0 +1,78 @@
+/* ── Grid ────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+@media (min-width: 600px)  { .grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+@media (min-width: 900px)  { .grid { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
+
+/* ── Tarjeta ─────────────────────────────────── */
+.card {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  padding: 24px 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease, border-color 0.3s, background 0.3s;
+}
+.card.visible { opacity: 1; transform: translateY(0); }
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--acento), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.card:hover::before { transform: scaleX(1); }
+.card:hover {
+  border-color: rgba(0, 200, 240, 0.25);
+  background: var(--tarjeta-alt);
+}
+
+/* ── Icono ───────────────────────────────────── */
+.iconWrap {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--borde);
+  color: var(--acento);
+  transition: border-color 0.3s, background 0.3s;
+}
+.card:hover .iconWrap {
+  border-color: rgba(0, 200, 240, 0.35);
+  background: rgba(0, 200, 240, 0.06);
+}
+
+/* ── Texto ───────────────────────────────────── */
+.title {
+  font-family: var(--fuente-display);
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+  color: var(--texto);
+  margin-bottom: 7px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.desc {
+  font-size: 0.86rem;
+  color: var(--texto-2);
+  line-height: 1.65;
+}
+
+/* ── Desktop: tarjetas más altas ─────────────── */
+@media (min-width: 1024px) {
+  .card { padding: 28px 24px; }
+}

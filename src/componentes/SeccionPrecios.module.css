@@ -1,0 +1,115 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--borde);
+  background: var(--superficie);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+@media (min-width: 640px) { .block { flex-direction: row; } }
+.block.visible { opacity: 1; transform: translateY(0); }
+
+.left {
+  padding: 32px 24px;
+  border-bottom: 1px solid var(--borde);
+}
+@media (min-width: 640px) { .left { border-bottom: none; border-right: 1px solid var(--borde); flex: 1; } }
+
+.priceLabel {
+  font-family: var(--fuente-display);
+  font-size: 0.58rem;
+  letter-spacing: 3px;
+  color: var(--acento);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.priceTag {
+  font-family: var(--fuente-display);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 900;
+  color: var(--acento2);
+  text-shadow: 0 0 24px rgba(255,107,0,0.3);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.currency { font-size: 0.5em; vertical-align: top; margin-top: 0.15em; display: inline-block; }
+.priceSub { font-size: 0.8rem; color: var(--atenuado); margin-bottom: 20px; }
+
+.includes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.includes li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: var(--atenuado);
+}
+.includes li::before {
+  content: '✓';
+  color: var(--acento);
+  font-weight: 700;
+  font-family: var(--fuente-display);
+  flex-shrink: 0;
+}
+
+.inscribeBtn {
+  display: inline-flex;
+  align-items: center;
+  background: var(--acento2);
+  color: #fff;
+  font-family: var(--fuente-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 13px 26px;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  transition: box-shadow 0.25s, transform 0.25s;
+}
+.inscribeBtn:hover { box-shadow: 0 0 24px rgba(255,107,0,0.35); transform: translateY(-2px); }
+
+.right {
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  background: linear-gradient(135deg, rgba(0,212,255,0.04), transparent);
+}
+@media (min-width: 640px) { .right { flex: 1; } }
+
+.scheduleItem { display: flex; align-items: center; gap: 14px; }
+.scheduleIcon {
+  width: 42px; height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,212,255,0.08);
+  border: 1px solid var(--borde);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.scheduleLabel {
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  color: var(--atenuado);
+  text-transform: uppercase;
+}
+.scheduleValue { font-size: 0.9rem; font-weight: 600; color: var(--texto); margin-top: 2px; }
+
+
+.scheduleIcon svg {
+  color: var(--acento);
+  filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.6));
+  transition: transform 0.25s ease;
+}
+
+.scheduleItem:hover .scheduleIcon svg {
+  transform: scale(1.2);
+}

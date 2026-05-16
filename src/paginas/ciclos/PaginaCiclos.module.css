@@ -1,0 +1,191 @@
+/* ── Intro ───────────────────────────────────── */
+.intro {
+  color: var(--texto-2);
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 48px;
+  max-width: 560px;
+}
+
+/* ── Grilla de tarjetas ──────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 640px)  { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* ── Tarjeta ─────────────────────────────────── */
+.card {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  padding: 28px 26px 24px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease,
+    border-color 0.3s,
+    box-shadow 0.35s,
+    background 0.3s;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--ciclo-color);
+}
+.card.visible { opacity: 1; transform: translateY(0); }
+.card:hover {
+  border-color: var(--ciclo-color);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  transform: translateY(-5px) !important;
+  background: var(--tarjeta-alt);
+}
+
+/* ── Fila superior ───────────────────────────── */
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.iconBox {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--borde);
+  color: var(--ciclo-color);
+  flex-shrink: 0;
+  transition: border-color 0.3s, background 0.3s;
+}
+.card:hover .iconBox {
+  border-color: var(--ciclo-color);
+  background: rgba(from var(--ciclo-color) r g b / 0.08);
+}
+
+.tag {
+  font-family: var(--fuente-display);
+  font-size: 0.44rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+/* ── Nombre y descripción ────────────────────── */
+.name {
+  font-family: var(--fuente-display);
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--texto);
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.desc {
+  font-size: 0.85rem;
+  color: var(--texto-2);
+  line-height: 1.7;
+}
+
+/* ── Estadísticas ────────────────────────────── */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 1px solid var(--borde-sutil);
+  overflow: hidden;
+  margin-top: auto;
+}
+.stat {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 12px 10px;
+  text-align: center;
+  border-right: 1px solid var(--borde-sutil);
+  border-bottom: 1px solid var(--borde-sutil);
+}
+.stat:nth-child(even)     { border-right: none; }
+.stat:nth-last-child(-n+2) { border-bottom: none; }
+.statNum {
+  display: block;
+  font-family: var(--fuente-display);
+  font-size: 1.1rem;
+  font-weight: 900;
+  line-height: 1;
+}
+.statLabel {
+  display: block;
+  font-size: 0.5rem;
+  letter-spacing: 1.5px;
+  color: var(--atenuado);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ── Pie de tarjeta ──────────────────────────── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1px solid var(--borde-sutil);
+}
+.price         { display: flex; align-items: baseline; gap: 6px; }
+.priceNum {
+  font-family: var(--fuente-display);
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--texto);
+}
+.priceSub { font-size: 0.72rem; color: var(--atenuado); }
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--fuente-display);
+  font-size: 0.5rem;
+  letter-spacing: 1.5px;
+  color: var(--atenuado);
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.ctaArrow { transition: transform 0.2s; }
+.card:hover .cta      { color: var(--ciclo-color); }
+.card:hover .ctaArrow { transform: translateX(3px); }
+
+/* ── Botón volver ────────────────────────────── */
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--fuente-display);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--atenuado);
+  background: transparent;
+  border: 1px solid var(--borde-sutil);
+  padding: 10px 20px;
+  margin-bottom: 36px;
+  cursor: pointer;
+  transition: color 0.25s, border-color 0.25s, background 0.25s;
+}
+.backBtn:hover {
+  color: var(--texto);
+  border-color: var(--borde);
+  background: rgba(255, 255, 255, 0.03);
+}

@@ -1,0 +1,44 @@
+.page { padding: 32px 24px 100px; max-width: 860px; margin: 0 auto; }
+.btnVolver { display: inline-flex; align-items: center; gap: 6px; font-family: var(--fuente-display); font-size: 0.48rem; letter-spacing: 2px; text-transform: uppercase; color: var(--atenuado); background: transparent; border: 1px solid var(--borde-sutil); padding: 9px 16px; margin-bottom: 28px; cursor: pointer; text-decoration: none; transition: color 0.2s, border-color 0.2s; }
+.btnVolver:hover { color: var(--texto); border-color: var(--borde); }
+.header { margin-bottom: 28px; }
+.titulo { font-family: var(--fuente-titulo); font-size: 1.5rem; font-weight: 900; color: var(--texto); margin-bottom: 6px; }
+.sub { font-size: 0.83rem; color: var(--atenuado); }
+.sub strong { color: var(--acento); }
+.vacio { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 72px 24px; color: var(--atenuado); border: 1px solid var(--borde); font-size: 0.9rem; }
+
+.preguntasWrap { display: flex; flex-direction: column; gap: 16px; }
+
+.pregCard { background: var(--tarjeta); border: 1px solid var(--borde); overflow: hidden; }
+.pregHead { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; border-bottom: 1px solid var(--borde-sutil); }
+.pregNum { width: 28px; height: 28px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(0,200,240,0.25); background: rgba(0,200,240,0.05); font-family: var(--fuente-display); font-size: 0.52rem; font-weight: 700; color: var(--acento); }
+.pregTexto { flex: 1; font-size: 0.9rem; color: var(--texto); line-height: 1.5; }
+.pregTipo { font-family: var(--fuente-display); font-size: 0.4rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--atenuado); border: 1px solid var(--borde-sutil); padding: 2px 8px; flex-shrink: 0; align-self: flex-start; margin-top: 2px; }
+.pregTotal { font-family: var(--fuente-display); font-size: 0.42rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--atenuado); padding: 8px 18px 4px; }
+
+/* Barras */
+.opcionesRes { display: flex; flex-direction: column; gap: 8px; padding: 10px 18px 16px; }
+.opcionRow { display: flex; align-items: center; gap: 10px; }
+.opcionTexto { font-size: 0.83rem; color: var(--texto-2); width: 160px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.barraOuter { flex: 1; height: 8px; background: var(--superficie); border: 1px solid var(--borde-sutil); }
+.barraInner { height: 100%; background: var(--acento); transition: width 0.6s ease; min-width: 0; }
+.opcionCnt { font-family: var(--fuente-display); font-size: 0.42rem; letter-spacing: 1px; color: var(--atenuado); white-space: nowrap; width: 64px; text-align: right; flex-shrink: 0; }
+
+/* Escala */
+.escalaRes { padding: 12px 18px 16px; }
+.escalaPromedio { display: flex; align-items: baseline; gap: 6px; margin-bottom: 14px; }
+.escalaNum { font-family: var(--fuente-display); font-size: 2.2rem; font-weight: 900; color: var(--acento); line-height: 1; }
+.escalaDe { font-size: 0.78rem; color: var(--atenuado); }
+.escalaDist { display: flex; flex-direction: column; gap: 7px; }
+.escalaFila { display: flex; align-items: center; gap: 10px; }
+.escalaLabel { font-family: var(--fuente-display); font-size: 0.6rem; font-weight: 700; color: var(--atenuado); width: 14px; flex-shrink: 0; text-align: center; }
+
+/* Texto libre */
+.textosLista { list-style: none; display: flex; flex-direction: column; gap: 6px; padding: 10px 18px 16px; }
+.textoItem { font-size: 0.85rem; color: var(--texto-2); line-height: 1.5; padding: 10px 14px; border: 1px solid var(--borde-sutil); background: var(--superficie); font-style: italic; }
+.textoVacio { font-size: 0.8rem; color: var(--atenuado); }
+
+@media (max-width: 600px) {
+  .page { padding: 20px 14px 100px; }
+  .opcionTexto { width: 100px; }
+}

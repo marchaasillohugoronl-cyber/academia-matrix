@@ -1,0 +1,489 @@
+/* ── Página ──────────────────────────────────── */
+.page {
+  padding: 32px 24px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Cabecera ────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.iconBox {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--borde);
+  color: var(--acento);
+  background: rgba(0, 200, 240, 0.05);
+  flex-shrink: 0;
+}
+.titulo {
+  font-family: var(--fuente-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--texto);
+  letter-spacing: 1px;
+}
+.sub {
+  font-size: 0.8rem;
+  color: var(--atenuado);
+  margin-top: 2px;
+}
+
+.btnExportar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--fuente-display);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  background: transparent;
+  color: var(--acento);
+  border: 1px solid rgba(0, 200, 240, 0.35);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.btnExportar:hover {
+  background: rgba(0, 200, 240, 0.07);
+  border-color: var(--acento);
+}
+
+/* ── Filtros ─────────────────────────────────── */
+.filtros {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.buscador {
+  position: relative;
+  flex: 1;
+  min-width: 220px;
+}
+.buscadorIcono {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--atenuado);
+  pointer-events: none;
+}
+.inputBusqueda {
+  width: 100%;
+  padding: 10px 12px 10px 36px;
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  color: var(--texto);
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.inputBusqueda:focus { border-color: rgba(0, 200, 240, 0.5); }
+.inputBusqueda::placeholder { color: var(--atenuado); }
+
+.selects {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.select {
+  padding: 10px 14px;
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  color: var(--texto);
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.85rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.select:focus { border-color: rgba(0, 200, 240, 0.5); }
+
+/* ── Tabla ───────────────────────────────────── */
+.tablaWrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--borde);
+}
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.tabla thead tr {
+  background: var(--tarjeta-alt);
+  border-bottom: 1px solid var(--borde);
+}
+.tabla th {
+  font-family: var(--fuente-display);
+  font-size: 0.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--atenuado);
+  padding: 14px 16px;
+  text-align: left;
+  white-space: nowrap;
+}
+.tabla tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background 0.15s;
+}
+.tabla tbody tr:last-child { border-bottom: none; }
+.tabla tbody tr:hover { background: rgba(0, 200, 240, 0.03); }
+.tabla td {
+  padding: 14px 16px;
+  color: var(--texto-2);
+  white-space: nowrap;
+}
+
+.tdDni    { font-family: monospace; font-size: 0.9rem; color: var(--texto); font-weight: 600; }
+.tdNombre { color: var(--texto); font-weight: 500; }
+.tdFecha  { color: var(--atenuado); font-size: 0.8rem; }
+
+/* ── Badges de estado ────────────────────────── */
+.badgeActivo,
+.badgeInactivo {
+  display: inline-block;
+  font-family: var(--fuente-display);
+  font-size: 0.48rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  font-weight: 700;
+}
+.badgeActivo   { background: rgba(0, 200, 100, 0.12); color: #4ade80; border: 1px solid rgba(0, 200, 100, 0.3); }
+.badgeInactivo { background: rgba(200, 50, 50, 0.1);  color: #f87171; border: 1px solid rgba(200, 50, 50, 0.25); }
+
+/* ── Estado vacío ────────────────────────────── */
+.vacio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 72px 24px;
+  color: var(--atenuado);
+  border: 1px solid var(--borde);
+  font-size: 0.9rem;
+}
+
+/* ── Columna email / botón credenciales ──────── */
+.tdEmail { max-width: 200px; overflow: hidden; text-overflow: ellipsis; }
+.emailAsignado { font-family: monospace; font-size: 0.82rem; color: var(--acento); }
+.emailPendiente { font-size: 0.8rem; color: var(--atenuado); font-style: italic; }
+
+.btnCred {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px;
+  background: transparent;
+  border: 1px solid var(--borde);
+  color: var(--atenuado);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.btnCred:hover {
+  color: var(--acento);
+  border-color: rgba(0, 200, 240, 0.45);
+  background: rgba(0, 200, 240, 0.06);
+}
+
+/* ── Modal credenciales ──────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 20px;
+}
+
+.modal {
+  width: 100%;
+  max-width: 460px;
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  position: relative;
+}
+.modal::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--acento), transparent);
+}
+
+.modalHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--borde);
+}
+.modalTitulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--fuente-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--acento);
+}
+.modalCerrar {
+  background: transparent;
+  border: none;
+  color: var(--atenuado);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  transition: color 0.2s;
+}
+.modalCerrar:hover { color: var(--texto); }
+
+.modalSub {
+  padding: 12px 24px 0;
+  font-size: 0.85rem;
+  color: var(--atenuado);
+}
+
+.modalOk {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 24px 0;
+  padding: 11px 14px;
+  background: rgba(0, 200, 100, 0.08);
+  border: 1px solid rgba(0, 200, 100, 0.25);
+  color: #4ade80;
+  font-size: 0.84rem;
+}
+.modalError {
+  margin: 14px 24px 0;
+  padding: 11px 14px;
+  background: rgba(220, 60, 60, 0.08);
+  border: 1px solid rgba(220, 60, 60, 0.25);
+  color: #f87171;
+  font-size: 0.84rem;
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 24px 24px;
+}
+.modalForm .campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.modalForm .campo label {
+  font-family: var(--fuente-display);
+  font-size: 0.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--atenuado);
+}
+.modalForm .campo input {
+  width: 100%;
+  padding: 12px 13px;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  color: var(--texto);
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.modalForm .campo input:focus { border-color: rgba(0, 200, 240, 0.55); }
+.hint { font-size: 0.75rem; color: var(--atenuado); }
+
+.btnGuardar {
+  width: 100%;
+  padding: 14px;
+  background: var(--acento);
+  color: #000;
+  font-family: var(--fuente-display);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  transition: background 0.2s, opacity 0.2s;
+  margin-top: 4px;
+}
+.btnGuardar:hover:not(:disabled) { background: var(--acento-hover); }
+.btnGuardar:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ── Modal grande (edición) ──────────────────── */
+.modalGrande {
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Grid de 2 columnas dentro del form */
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.span2 { grid-column: 1 / -1; }
+
+/* Etiqueta de sección */
+.secLabel {
+  font-family: var(--fuente-display);
+  font-size: 0.48rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--acento);
+  border-bottom: 1px solid rgba(0, 200, 240, 0.15);
+  padding-bottom: 6px;
+  margin-top: 4px;
+}
+
+/* Select dentro de modalForm */
+.modalForm .campo select {
+  width: 100%;
+  padding: 12px 13px;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  color: var(--texto);
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+  cursor: pointer;
+}
+.modalForm .campo select:focus { border-color: rgba(0, 200, 240, 0.55); }
+
+/* ── Botones de acción en tabla ──────────────── */
+.acciones {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.btnAccion {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 1px solid var(--borde);
+  color: var(--atenuado);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+.btnAccion:hover {
+  color: var(--acento);
+  border-color: rgba(0, 200, 240, 0.45);
+  background: rgba(0, 200, 240, 0.06);
+}
+.btnAccionRojo:hover {
+  color: #f87171;
+  border-color: rgba(220, 60, 60, 0.4);
+  background: rgba(220, 60, 60, 0.07);
+}
+
+/* ── Modal de eliminación ────────────────────── */
+.modalTituloRojo { color: #f87171 !important; }
+
+.modalBody {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--texto-2);
+}
+.nombreEliminar {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--texto);
+}
+.dniEliminar {
+  font-family: monospace;
+  color: var(--atenuado);
+  font-size: 0.85rem;
+}
+.advertencia {
+  margin-top: 8px;
+  padding: 10px 13px;
+  background: rgba(220, 60, 60, 0.08);
+  border: 1px solid rgba(220, 60, 60, 0.25);
+  color: #f87171;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.modalAcciones {
+  display: flex;
+  gap: 10px;
+  padding: 16px 24px 24px;
+  justify-content: flex-end;
+}
+.btnCancelar {
+  padding: 11px 22px;
+  background: transparent;
+  border: 1px solid var(--borde);
+  color: var(--texto-2);
+  font-family: var(--fuente-display);
+  font-size: 0.58rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.btnCancelar:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.2); }
+.btnCancelar:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btnEliminar {
+  padding: 11px 22px;
+  background: rgba(220, 60, 60, 0.15);
+  border: 1px solid rgba(220, 60, 60, 0.45);
+  color: #f87171;
+  font-family: var(--fuente-display);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.btnEliminar:hover { background: rgba(220, 60, 60, 0.25); border-color: rgba(220, 60, 60, 0.7); }
+.btnEliminar:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Mobile ──────────────────────────────────── */
+@media (max-width: 600px) {
+  .page  { padding: 24px 16px 100px; }
+  .titulo { font-size: 0.9rem; }
+  .grid2 { grid-template-columns: 1fr; }
+  .span2 { grid-column: auto; }
+  .modalGrande { max-height: 95vh; }
+}

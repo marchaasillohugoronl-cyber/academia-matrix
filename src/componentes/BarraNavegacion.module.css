@@ -1,0 +1,134 @@
+/* ── Barra de navegación ─────────────────────── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 20px;
+  height: 68px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: rgba(2, 8, 16, 0.75);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.4s, background 0.4s, box-shadow 0.4s;
+}
+
+.nav.scrolled {
+  border-bottom-color: rgba(0, 200, 240, 0.1);
+  background: rgba(2, 8, 16, 0.96);
+  box-shadow: 0 1px 0 rgba(0, 200, 240, 0.06), 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Logotipo ────────────────────────────────── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logoImg {
+  height: 54px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(0, 200, 240, 0.3));
+  transition: filter 0.3s, transform 0.3s;
+}
+.logoImg:hover {
+  filter: drop-shadow(0 0 14px rgba(0, 200, 240, 0.6));
+  transform: scale(1.04);
+}
+
+.logoText {
+  font-family: var(--fuente-display);
+  font-size: 0.95rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: var(--acento);
+  text-shadow: 0 0 20px rgba(0, 200, 240, 0.4);
+  transition: color 0.25s, text-shadow 0.25s;
+}
+.logo:hover .logoText {
+  color: var(--acento-hover);
+  text-shadow: 0 0 28px rgba(0, 229, 255, 0.5);
+}
+
+/* ── Lado derecho ────────────────────────────── */
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ── Enlace de nav ───────────────────────────── */
+.navLink {
+  display: none;
+  font-family: var(--fuente-display);
+  font-size: 0.52rem;
+  letter-spacing: 2.5px;
+  color: var(--atenuado);
+  text-transform: uppercase;
+  padding: 6px 14px;
+  transition: color 0.2s, background 0.2s;
+  border-radius: 2px;
+}
+.navLink:hover {
+  color: var(--texto);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ── CTA principal ───────────────────────────── */
+.cta {
+  background: var(--acento);
+  color: #000;
+  font-family: var(--fuente-display);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
+  white-space: nowrap;
+  line-height: 1;
+}
+.cta:hover {
+  background: var(--acento-hover);
+  box-shadow: 0 0 28px rgba(0, 200, 240, 0.45);
+  transform: translateY(-1px);
+}
+.cta:active { transform: translateY(0); }
+
+/* ── Desktop ≥ 640px ─────────────────────────── */
+@media (min-width: 640px) {
+  .nav { padding: 0 32px; height: 72px; }
+  .navLink { display: block; }
+  .navRight { gap: 12px; }
+}
+
+/* ── Desktop ≥ 1024px ────────────────────────── */
+@media (min-width: 1024px) {
+  .nav { padding: 0 56px; height: 76px; }
+  .navRight { gap: 20px; }
+  .navLink {
+    font-size: 0.56rem;
+    letter-spacing: 3px;
+    padding: 8px 18px;
+  }
+  .logoText { font-size: 1.05rem; letter-spacing: 5px; }
+  .logoImg { height: 58px; }
+  .cta { padding: 12px 28px; font-size: 0.62rem; }
+}
+
+/* ── Mobile < 640px ─────────────────────────── */
+@media (max-width: 639px) {
+  .logoImg { height: 46px; }
+  .logoText { font-size: 0.8rem; letter-spacing: 3px; }
+  .cta { padding: 9px 16px; }
+}
