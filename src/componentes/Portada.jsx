@@ -122,15 +122,16 @@ export default function Portada() {
       {/* Botones — Ver detalles | Iniciar sesión | Ciclos */}
       <div className={styles.actionsWrap}>
         <div className={`${styles.actions} ${ocultarDesc ? styles.actionsCentradas : ''}`}>
-
-          <a href="#" className={styles.btnSecondary} onClick={scrollNiveles}>
-            Ver detalles →
-          </a>
-
           <Link href="/portal" className={styles.btnPrimary}>
             <UserCircle size={15} />
             Iniciar sesión
           </Link>
+          
+          <a href="#" className={styles.btnSecondary} onClick={scrollNiveles}>
+            Ver detalles →
+          </a>
+
+
 
           <button onClick={() => navegar.push('/ciclos')} className={styles.btnCiclos}>
             Ciclos

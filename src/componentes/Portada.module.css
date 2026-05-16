@@ -94,7 +94,7 @@
   display: block;
   font-size: clamp(0.8rem, 3vw, 1.8rem);
   font-weight: 400;
-  color: rgba(200, 230, 240, 0.9);
+  color: rgba(251, 251, 251, 0.9);
   letter-spacing: clamp(8px, 2.2vw, 26px);
   margin-bottom: 10px;
 }
