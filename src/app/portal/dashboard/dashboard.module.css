@@ -657,7 +657,19 @@ a.itemCompletado:hover { background: rgba(74,222,128,0.12); border-color: rgba(7
   align-items: flex-end;
   gap: 8px;
   text-decoration: none;
-  cursor: pointer;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.botWidgetDragging {
+  cursor: grabbing;
+}
+.botWidgetDragging .botCirculo {
+  box-shadow: 0 0 40px rgba(0,200,240,0.8);
+  border-color: var(--acento-hover);
+  transform: scale(1.08);
 }
 
 /* En desktop no hay nav inferior */
